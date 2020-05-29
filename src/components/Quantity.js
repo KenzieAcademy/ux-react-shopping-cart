@@ -3,9 +3,9 @@ import React from "react";
 function Quantity(props) {
   return (
     <span>
-      <button>-</button>
-      Item Quantity
-      <button>+</button>
+      <button onClick={props.onDecrease}>-</button>
+      {props.amount}
+      <button onClick={props.onIncrease}>+</button>
     </span>
   );
 }
