@@ -46,10 +46,19 @@ class App extends Component {
   };
 
   handleDecrementQuantity = (id) => {
-    // Your Code Here!
-    // Do the same as handleIncrementQuantity, but decrement it instead
-    // Remember that you should not decrement below zero!
-  };
+    this.setState((state) => {
+      const newList = state.cart.map((item) => {
+        if (item.id === id && item.quantity - 1{
+          return {...item,quantity: item.quantity - 1}
+        }else {
+          return item;
+        }
+        });
+        return {
+          cart: newList,
+        }
+      })
+    };
 
   handleCheckout = () => {
     alert(
@@ -76,11 +85,8 @@ class App extends Component {
             <input
               type="checkbox"
               defaultChecked={this.stateIncisOnMailingList}
-              onChange={(event) =>
-                // Your code here!
-                // Use setState to update the flag in state for the checkbox
-                // Hint: use event.target.checked
-                this.setState()
+              onChange={(event) => this.setState({value: event.target.value})
+    
               }
             />
             Sign me up for the mailing list!
