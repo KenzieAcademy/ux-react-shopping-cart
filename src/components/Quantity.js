@@ -1,11 +1,13 @@
 import React from "react";
 
 function Quantity(props) {
+  
   return (
     <span>
-      <button>-</button>
-      Item Quantity
-      <button>+</button>
+      {props.item.quantity}
+      <button onClick={props.onDecreaseQuanity}>-</button>
+      {props.item.quantity}
+      <button onClick={props.onIncreaseQuantity}>+</button>
     </span>
   );
 }

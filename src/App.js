@@ -33,7 +33,7 @@ class App extends Component {
     this.setState((state) => {
       const newList = state.cart.map((item) => {
         if (item.id === id) {
-          return Object.assign({}, item, { quantity: item.quantity + 1 });
+          return {...item, quantity:item.quantity +1};
         } else {
           return item;
         }
@@ -46,6 +46,20 @@ class App extends Component {
   };
 
   handleDecrementQuantity = (id) => {
+    this.setState((state) => {
+      const newList = state.cart.map((item) => {
+        if (item.id === id && item.quantity > 0) {
+          return {...item, quantity:item.quantity -1};
+        } else {
+          return item;
+        }
+      });
+
+      return {
+        cart: newList,
+      };
+    });
+
     // Your Code Here!
     // Do the same as handleIncrementQuantity, but decrement it instead
     // Remember that you should not decrement below zero!
@@ -67,7 +81,8 @@ class App extends Component {
         <ul className="list">
           {this.state.cart.map((item) => (
             <li key={item.id}>
-              <Product your props here />
+              <Product item={item} onIncreaseQuantity={this.handleIncrementQuantity}
+              onDecreaseQuantity={this.handleDecrementQuantity} />
             </li>
           ))}
         </ul>
@@ -75,7 +90,7 @@ class App extends Component {
           <label>
             <input
               type="checkbox"
-              defaultChecked={this.stateIncisOnMailingList}
+              defaultChecked={this.state.isOnMailingList}
               onChange={(event) =>
                 // Your code here!
                 // Use setState to update the flag in state for the checkbox
